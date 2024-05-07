@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Permissions;
 use App\Models\Roles;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,18 +15,23 @@ class RolesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Roles::create(['name' => 'Administrador']);
-        $almacenista = Roles::create(['name' => 'Almacenista']);
+        // $admin = Roles::create(['name' => 'Administrador']);
+        // $almacenista = Roles::create(['name' => 'Almacenista']);
 
-        $verInventario = Permissions::create(['name' => 'Ver Inventario']);
-        $agregarProductos = Permissions::create(['name' => 'Agregar Productos']);
-        $aumentarInventario = Permissions::create(['name' => 'Aumentar Inventario']);
-        $darDeBaja = Permissions::create(['name' => 'Dar de baja/reactivar un producto']);
-        $verSalidas = Permissions::create(['name' => 'Ver Salidas de productos']);
-        $sacarInventario = Permissions::create(['name' => 'Sacar inventario del almacen']);
-        $verHistorico = Permissions::create(['name' => 'Ver modulo historico']);
+        // $verInventario = Permissions::create(['name' => 'Ver Inventario']);
+        // $agregarProductos = Permissions::create(['name' => 'Agregar Productos']);
+        // $aumentarInventario = Permissions::create(['name' => 'Aumentar Inventario']);
+        // $darDeBaja = Permissions::create(['name' => 'Dar de baja/reactivar un producto']);
+        // $verSalidas = Permissions::create(['name' => 'Ver Salidas de productos']);
+        // $sacarInventario = Permissions::create(['name' => 'Sacar inventario del almacen']);
+        // $verHistorico = Permissions::create(['name' => 'Ver modulo historico']);
 
-        $admin->permissions()->attach([$verInventario->id, $agregarProductos->id, $aumentarInventario->id, $darDeBaja->id, $verHistorico->id]);
-        $almacenista->permissions()->attach([$verInventario->id, $verSalidas->id, $sacarInventario->id]);
+        // $admin->permissions()->attach([$verInventario->id, $agregarProductos->id, $aumentarInventario->id, $darDeBaja->id, $verHistorico->id]);
+        // $almacenista->permissions()->attach([$verInventario->id, $verSalidas->id, $sacarInventario->id]);
+
+        $user = User::find(1);
+        $role = Roles::find(1);
+
+        $user->roles()->attach($role);
     }
 }
